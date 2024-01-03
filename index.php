@@ -1,18 +1,42 @@
-<?php 
+<?php
 require_once("./connexion/connexionDb.php");
 include_once("./partials/header.php");
 include_once("./partials/footer.php");
 ?>
 
 <section>
-    <img src="./image/icone-user.gif" alt="icone user">
-    <h2>chiligram</h2>
-    <form action="./processe/userProcess.php" method="post">
-    <label for="pseudo">CREATED USER</label>
-    <input type="text" name="newpseudo">
-    <label for="pseudo">PSEUDO</label>
-    <input type="text" name="pseudo">
-    <label for="pseudo">PASSWORD</label>
-    <input type="text" name="password">
-    </form>
+    <div class="col-0 col-md-4"></div>
+    <div class="container d-flex justify-content-center mt-3 p-3 ">
+        <div class="d-flex flex-column col-8 col-md-4 border rounded container bg-card">
+            <div class="d-flex justify-content-center align-items-center flex-column ">
+                <div class="mt-3">
+                    <img src="./image/icone-user.gif" alt="icone annimate user" height="70px" class="img">
+                </div>
+                <div class="mt-3 ">
+                    <h2 class="title-card">Chiligram</h2>
+                </div>
+            </div>
+
+            <form action="./page/addUser.php" method="post">
+
+                <div class="d-flex justify-content-center text-center flex-column">
+                    <label for="pseudo" class="mt-2 text-card">CREATED USER</label>
+                    <input type="text" name="newpseudo" class="mt-3 rounded">
+                </div>
+                <h4 class="text-center mt-2 mb-2 text-card">OR</h4>
+                <div class="d-flex justify-content-center flex-column">
+                    <label for="pseudo" class="mb-2 mt-2 text-card">PSEUDO</label>
+                    <input type="text" name="pseudo"class="rounded">
+
+                    <label for="pseudo" class="mb-2 mt-2 text-card">PASSWORD</label>
+                    <input type="text" name="password"class="rounded">
+
+                    <button type="submit" class="mt-4 mb-4 rounded text-card">GO</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    <div class="col-0 col-md-4"></div>
 </section>
