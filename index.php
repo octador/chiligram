@@ -2,6 +2,8 @@
 require_once("./connexion/connexionDb.php");
 include_once("./partials/header.php");
 include_once("./partials/footer.php");
+session_start();
+
 ?>
 
 <section>
@@ -17,23 +19,14 @@ include_once("./partials/footer.php");
                 </div>
             </div>
 
-            <form action="./page/addUser.php" method="post">
-
-                <div class="d-flex justify-content-center text-center flex-column">
-                    <label for="pseudo" class="mt-2 text-card">CREATED USER</label>
-                    <input type="text" name="newpseudo" class="mt-3 rounded">
-                </div>
-                <h4 class="text-center mt-2 mb-2 text-card">OR</h4>
+            <form action="./page/profil.php" method="post">
                 <div class="d-flex justify-content-center flex-column">
                     <label for="pseudo" class="mb-2 mt-2 text-card">PSEUDO</label>
-                    <input type="text" name="pseudo"class="rounded">
+                    <input type="text" name="pseudo" class="rounded">
 
-                    <label for="pseudo" class="mb-2 mt-2 text-card">PASSWORD</label>
-                    <input type="text" name="password"class="rounded">
-
+                    <a href="./page/addUser.php" class="border mt-4 btn btn-white"> ADD ACCOUNT</a>
                     <button type="submit" class="mt-4 mb-4 rounded text-card">GO</button>
                 </div>
-
             </form>
 
         </div>

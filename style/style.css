@@ -45,6 +45,6 @@ body{
 /* ----------------------------RESPONSIVE--------------------------- */
 @media(max-width: 600px){
     img{
-        height: 30px;
+        height: 30px;    
     }
 }
