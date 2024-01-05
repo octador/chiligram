@@ -2,7 +2,7 @@
 require_once("./connexion/connexionDb.php");
 include_once("./partials/header.php");
 include_once("./partials/footer.php");
-session_start();
+
 
 ?>
 
@@ -19,7 +19,7 @@ session_start();
                 </div>
             </div>
 
-            <form action="./page/profil.php" method="post">
+            <form action="./process/ckeckUser.php" method="post">
                 <div class="d-flex justify-content-center flex-column">
                     <label for="pseudo" class="mb-2 mt-2 text-card">PSEUDO</label>
                     <input type="text" name="pseudo" class="rounded">

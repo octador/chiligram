@@ -4,10 +4,6 @@
 require_once('../connexion/connexionDb.php');
 
 session_start();
-$pseudo = $_POST['pseudo'];
-$image = $_FILES['image'];
-
-
 
 if (
     isset($_POST['pseudo']) && !empty($_POST['pseudo']) &&
@@ -24,7 +20,6 @@ if (
     $_SESSION['pseudo'] = $pseudo;
     $_SESSION['image'] = $pathimage;
 
-
     $sqlInsert = "INSERT INTO profil (pseudo, picture ) VALUE (:pseudo, :picture)";
     $createUser = $db->prepare($sqlInsert);
     $createUser->execute(
@@ -33,7 +28,8 @@ if (
             'picture' => $pathimage,
         ]
     );
+    header('Location: ../page/profil.php');
 }
 
 
-header('Location: ../page/profil.php');
+

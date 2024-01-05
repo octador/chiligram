@@ -5,17 +5,18 @@ include_once("../partials/footer.php");
 
 session_start();
 var_dump($_SESSION['pseudo']);
-var_dump($_SESSION['image']);
+var_dump($_SESSION['picture']);
+$_SESSION['image'] = $_SESSION['picture'];
 ?>
 
 <section class="col-12">
     <div class="container d-flex justify-content-around rounded card-profil mt-1">
         <div class="m-1">
-            <img src="<?php echo isset($_SESSION['image']) && !empty($_SESSION['image']) ? $_SESSION['image'] : '../image/icone-user.gif'; ?>" alt="Image icone" height="140px" class="rounded-start-circle rounded-end-circle">
+            <img src="<?php echo isset($_SESSION['image']) && !empty($_SESSION['imag']) ? $_SESSION['image'] : '../image/icone-user.gif'; ?>" alt="Image icone" height="140px" class="rounded-start-circle rounded-end-circle">
         </div>
 
         <div class="mt-4">
-            <img src="<?php echo isset($_SESSION['imag']) && !empty($_SESSION['image']) ? $_SESSION['image'] : '../image/icone-user.gif'; ?>" alt="Image icone" height="90px" class="rounded-start-circle rounded-end-circle">
+            <img src="<?php echo isset($_SESSION['image']) && !empty($_SESSION['image']) ? $_SESSION['image'] : '../image/icone-user.gif'; ?>" alt="Image icone" height="90px" class="rounded-start-circle rounded-end-circle">
         </div>
         <div class="mt-4">
             <img src="<?php echo isset($_SESSION['image']) && !empty($_SESSION['image']) ? $_SESSION['image'] : '../image/icone-user.gif'; ?>" alt="Image icone" height="90px" class="rounded-start-circle rounded-end-circle">
