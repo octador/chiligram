@@ -16,9 +16,6 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     $request->execute();
     $checkuser = $request->fetch();
 
-    var_dump('le pseudo db :'. $checkuser['pseudo']);
-    var_dump('le pseudo post :'. $pseudoSession);
-
     // pour select picture du pseudo
     $sql = "SELECT picture FROM profil WHERE pseudo = '$pseudoSession' ";
     $request = $db->prepare($sql);
@@ -28,10 +25,9 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     var_dump('en dessous');
     var_dump($checkPicture['picture']);
     
-
-    // if ($checkPicture['picture'] == false) {
-    //     header("Location: ../page/addUser.php");
-    // }
+    if ($checkPicture['picture'] == false) {
+        header("Location: ../page/addUser.php");
+    }
 
     $valuecheckPicture = $checkPicture['picture'];
 

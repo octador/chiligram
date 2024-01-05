@@ -17,6 +17,7 @@ if (
 
     $image = move_uploaded_file($tmp_name, "../img/" . $name);
     $pathimage = "../img/" . $name;
+    
     $_SESSION['pseudo'] = $pseudo;
     $_SESSION['image'] = $pathimage;
 

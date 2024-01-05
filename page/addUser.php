@@ -17,7 +17,7 @@ include_once("../process/userProcess.php")
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="d-flex flex-column mt-2 ">
                     <label for="pseudo" class="text-start">PSEUDO</label>
-                    <input type="text" name="pseudo" id="pseudo" class="rounded">
+                    <input type="text" name="pseudo" id="addpseudo" class="rounded">
                 </div>
 
                 <div class="d-flex flex-column mt-2 mb-3">
@@ -26,7 +26,8 @@ include_once("../process/userProcess.php")
 
                     <input type="button" value="EFFACER" onclick="deleteImage()" class="text-card rounded mt-2">
                    <!-- ajouter une condition si les deux champ ne son pas remplies -->
-                    <button type="submit" class="text-card mt-1 rounded">ENVOYER</button>
+                  
+                    <button type="submit" class="text-card mt-1 rounded" id="submitButton">ENVOYER</button>
                 </div>
             </form>
         </div>
