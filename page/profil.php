@@ -4,16 +4,19 @@ include_once("../partials/header.php");
 include_once("../partials/footer.php");
 // include_once("../process/addPostProcess.php");
 session_start();
-// var_dump($_SESSION['pseudo']);
-// var_dump($_SESSION['picture']);
+
+
+// var_dump($_SESSION);
+var_dump($_SESSION['picture']);
 // var_dump($_SESSION['text']);
 // $_SESSION['image'] = $_SESSION['picture'];
 
+// connexion a la $db
 require_once('../connexion/connexionDb.php');
-$proliste = $db->query('SELECT * FROM profil');
 
+$proliste = $db->query('SELECT * FROM profil');
 $profils = $proliste->fetchALL();
-// var_dump($_SESSION['id']);
+
 if (isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
 
@@ -25,12 +28,7 @@ if (isset($_SESSION['id'])) {
 
 // $post = $postId->fetch();
 // var_dump($post);
-$postliste = $db->query('SELECT *, post.id FROM post JOIN profil  
-ON profil.id = post.id_user_post  ORDER BY post.date DESC');
 
-$posts = $postliste->fetchAll();
-// var_dump($posts);
-// var_dump($posts['id']);
 
 $comliste = $db->query('SELECT *, post.id FROM commentaire 
 JOIN profil JOIN post ON commentaire.id_post = post.id  
@@ -48,8 +46,9 @@ $coms = $comliste->fetchAll();
     <div class="d-flex flex-column container rounded bg-add-user text-created-user">
 
         <div class="d-flex justify-content-around align-items-center ">
+            <img src="<?php $_SESSION['picture']?>" alt="">
             <h2 class="tilte-card text-center title-add-user mt-2"> <?= $_SESSION['pseudo'] ?> PROFIL</h2>
-            <a class="text-decoration-none text-dark title-add-user" href="../page/addUser.php">Se déconnecter</a>
+            <a class="text-decoration-none text-dark title-add-user" href="">Se déconnecter</a>
         </div>
     </div>
     <div class="container d-flex justify-content-around rounded card-profil mt-1">

@@ -1,12 +1,9 @@
 <?php
-
+require_once("../connexion/connexionDb.php");
 include_once("../partials/header.php");
 include_once("../partials/footer.php");
 include_once("../process/userProcess.php");
 
-
-?>
-<?php
 
 // $sql = "SELECT * FROM profil";
 // $request = $db->prepare($sql);
@@ -19,10 +16,11 @@ if (isset($_SESSION['id'])) {
 var_dump($id);
     
 
-require_once("../connexion/connexionDb.php");
+
 $request = $db->query("SELECT * FROM profil WHERE id = $id");
 $user = $request->fetch();
 var_dump($user);
+
 var_dump($_SESSION['id']);
 // die();
  }
@@ -51,7 +49,7 @@ var_dump($_SESSION['id']);
                     </div>
                     <div class="mb-4">
 
-                        <input type="button" value="EFFACER" onclick="deleteImage()" class="text-card rounded mt-2">
+                        <input type="button" value="EFFACER" onclick="deleteImagepost()" class="text-card rounded mt-2">
                         <!-- ajouter une condition si les deux champ ne son pas remplies -->
                         <button type="submit" class="text-card mt-1 rounded ">Poster</button>
                     </div>

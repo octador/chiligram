@@ -1,57 +1,28 @@
 <?php
 require_once('../connexion/connexionDb.php');
 
-
-if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
+session_start();
+// je verifie si $poste pseudo existe
+if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])){
 
     $pseudoSession = $_POST['pseudo'];
-    var_dump($pseudoSession);
 
+    var_dump($pseudoSession);
     // verifier si il exist dans la $bd
     $sql = "SELECT * FROM profil WHERE pseudo = '$pseudoSession' ";
     $request = $db->prepare($sql);
     $request->execute();
     $checkuser = $request->fetch();
-    var_dump($checkuser['pseudo']);
 
     //si le pseudo n'est pas dans la bd
     if ($checkuser['pseudo'] == false) {
-        //vider la session avant envoi dans la pas adduser
-        
+        //    je renvoi a l'inscription
         header("Location: ../page/addUser.php");
     }
-    // var_dump('le pseudo db :'. $checkuser['pseudo']);
-    // var_dump('le pseudo post :'. $pseudoSession);
 
-    // pour select picture du pseudo
+    // pour select picture du pseudo si le pseudo n'est pas false
     $sql = "SELECT picture FROM profil WHERE pseudo = '$pseudoSession' ";
     $request = $db->prepare($sql);
     $request->execute();
     $checkPicture = $request->fetch();
-
-    //si il y a pas d'image
-    // if ($checkPicture['picture'] == false) {
-    // var_dump('en dessous');
-    // var_dump($checkPicture['picture']);
-    
-
-    if ($checkPicture['picture'] == false) {
-
-     
-        header("Location: ../page/addUser.php");
-    }
-    var_dump('en dessous');
-    var_dump($checkPicture['picture']);
-    header("Location: ../page/addUser.php");
-
-    
-
-    }
-    $valuecheckPicture = $checkPicture['picture'];
-   if ($checkuser['pseudo'] == $pseudoSession) {
-
-        $_SESSION['pseudo'] = $pseudoSession;
-        $_SESSION['picture'] = $valuecheckPicture;
-        header('Location: ../page/profil.php');
-}
 

@@ -17,14 +17,14 @@ include_once("./partials/footer.php");
                     <h2 class="title-card">Chiligram</h2>
                 </div>
             </div>
-
+            <!-- ./process/ckeckUser.php -->
             <form action="./process/ckeckUser.php" method="post">
                 <div class="d-flex justify-content-center flex-column">
                     <label for="pseudo" class="mb-2 mt-2 text-card">PSEUDO</label>
-                    <input type="text" name="pseudo" class="rounded">
-
+                    <input type="text" name="pseudo" class="rounded" required>
+                    <!-- ./page/addUser.php -->
                     <a href="./page/addUser.php" class="border mt-4 btn btn-white"> ADD ACCOUNT</a>
-                    <button type="submit" class="mt-4 mb-4 rounded text-card">GO</button>
+                    <button type="submit" class="mt-4 mb-4 rounded text-card" >GO</button>
                 </div>
             </form>
 
