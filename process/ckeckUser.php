@@ -2,9 +2,6 @@
 require_once('../connexion/connexionDb.php');
 
 
-session_start();
-
-
 if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
 
     $pseudoSession = $_POST['pseudo'];
@@ -31,8 +28,7 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
 
     //si il y a pas d'ilage
     if ($checkPicture['picture'] == false) {
-        //vider la session avant envoi dans la pas adduser
-        
+        //vider la session avant envoi dans la pas adduser    
         header("Location: ../page/addUser.php");
     }
 

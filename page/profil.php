@@ -4,14 +4,16 @@ include_once("../partials/header.php");
 include_once("../partials/footer.php");
 
 session_start();
-%
+
 ?>
 
 <section class="col-12">
     <div class="container d-flex justify-content-around rounded card-profil mt-1">
+        <a href="../page/addPost.php">
         <div class="m-1">
             <img src="<?php echo isset($_SESSION['image']) && !empty($_SESSION['image']) ? $_SESSION['image'] : '../image/icone-user.gif'; ?>" alt="Image icone" height="140px" class="rounded-start-circle rounded-end-circle">
         </div>
+    </a>
 
         <div class="mt-4">
             <img src="<?php echo isset($_SESSION['imag']) && !empty($_SESSION['image']) ? $_SESSION['image'] : '../image/icone-user.gif'; ?>" alt="Image icone" height="90px" class="rounded-start-circle rounded-end-circle">
