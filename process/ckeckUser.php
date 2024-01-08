@@ -12,7 +12,7 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     $request = $db->prepare($sql);
     $request->execute();
     $checkuser = $request->fetch();
-
+    var_dump($checkuser['pseudo']);
 
     //si le pseudo n'est pas dans la bd
     if ($checkuser['pseudo'] == false) {
@@ -29,28 +29,18 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     $request->execute();
     $checkPicture = $request->fetch();
 
-
-
-    //si il y a pas d'ilage
+    //si il y a pas d'image
     if ($checkPicture['picture'] == false) {
     var_dump('en dessous');
     var_dump($checkPicture['picture']);
-    
-
-    if ($checkPicture['picture'] == false) {
-
-        //vider la session avant envoi dans la pas adduser    
-        header("Location: ../page/addUser.php");
-    }
+    header("Location: ../page/addUser.php");
 
     $valuecheckPicture = $checkPicture['picture'];
 
-
-    if ($checkuser['pseudo'] == $pseudoSession) {
+    }
+   if ($checkuser['pseudo'] == $pseudoSession) {
 
         $_SESSION['pseudo'] = $pseudoSession;
         $_SESSION['picture'] = $valuecheckPicture;
-
         header('Location: ../page/profil.php');
-    }
 }}
