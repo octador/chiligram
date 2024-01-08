@@ -31,6 +31,7 @@ if (
             'id_post'=> $_POST['postId']
 
         ]
-    );  
+    ); 
+     
     header('Location: ../page/profil.php');
 }

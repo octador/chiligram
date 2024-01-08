@@ -25,14 +25,21 @@ if (isset($_SESSION['id'])) {
 
 // $post = $postId->fetch();
 // var_dump($post);
-$postliste = $db->query('SELECT *, post.id FROM post JOIN profil ON profil.id = post.id_user_post ORDER BY post.date DESC');
+$postliste = $db->query('SELECT *, post.id FROM post JOIN profil  
+ON profil.id = post.id_user_post  ORDER BY post.date DESC');
 
 $posts = $postliste->fetchAll();
 // var_dump($posts);
 // var_dump($posts['id']);
 
-$comliste = $db->query('SELECT commentaire.id, commentaire.text_com, commentaire.id_user_com, commentaire.id_post, profil.pseudo, profil.picture, post.id_user_post, post.id, post.text, post.picture_post, post.date  FROM commentaire JOIN profil JOIN post ON commentaire.id_post = post.id  AND commentaire.id_user_com = profil.id WHERE commentaire.id_post = post.id');
+$comliste = $db->query('SELECT *, post.id FROM commentaire 
+JOIN profil JOIN post ON commentaire.id_post = post.id  
+AND commentaire.id_user_com = profil.id 
+WHERE commentaire.id_post = post.id ORDER BY commentaire.id DESC');
 $coms = $comliste->fetchAll();
+
+// var_dump($posts);
+
 
 ?>
 
@@ -49,7 +56,7 @@ $coms = $comliste->fetchAll();
         <a href="../page/addPost.php">
         <div class="m-1">
             <img src="<?= $_SESSION['picture'] ?>" alt="Image icone" height="140px" class="rounded-start-circle  rounded-end-circle">
-            <h3 class="title-add-user"><?= $_SESSION['pseudo'] ?></h3>
+            <h3 class="title-add-user text-dark text-decoration-non"><?= $_SESSION['pseudo'] ?></h3>
         </div>
     </a>
         <?php foreach ($profils as $profil) { ?>
@@ -68,7 +75,7 @@ $coms = $comliste->fetchAll();
         <div class="d-flex flex-column container rounded bg-add-user text-created-user">
             <div class="d-flex justify-content-around align-items-center ">
                 <a href="./addPost.php">
-                    <h2 class="tilte-card text-center text-dark text-decoration-none title-add-user mt-2">Add Post</h2>
+                    <h2 class="tilte-card text-center text-dark text-decoration-non  title-add-user mt-2">Add Post</h2>
                 </a>
 
             </div>
@@ -78,12 +85,14 @@ $coms = $comliste->fetchAll();
 <!-- --------------------------------------------PARTY 2 --------------------------------- -->
 
 <?php foreach ($posts as $post) { ?>
+
     <section class="col-12">
         <div class="container card-profil mt-1">
             <div class="">
                 <div class=" d-flex justify-content-between mt-3 p-3 bg-white rounded ">
                     <div class="col-2">
-                        <img class="post rounded-start-circle rounded-end-circle" src="<?php $post['picture'] ?>" alt="">
+                        <img class="post rounded-start-circle rounded-end-circle" 
+                        src="<?php $post['picture'] ?>" alt="">
                         <h3 class="title-add-user"><?= $post['pseudo'] ?></h3>
                     </div>
                     <div>
@@ -108,12 +117,13 @@ $coms = $comliste->fetchAll();
                 <?php foreach ($coms as $com) { ?>
                     <div class="mt-4">
 
-                        <img src="<?php $com['picture'] ?>" alt="Image icone" height="90px" class="rounded-start-circle rounded-end-circle">
+                        <img src="<?php $com['picture'] ?>" alt="Image icone" 
+                        height="90px" class="rounded-start-circle rounded-end-circle">
                         <h3 class="title-add-user"><?= $com["pseudo"] ?></h3>
                         <p><?= $com["text_com"] ?></p>
 
                     </div>
-                 <?php } ?>
+                    <?php } ?> 
 
             </div>
            

@@ -13,17 +13,17 @@ include_once("../process/userProcess.php");
 // $request->execute();
 // $checkPicture = $request->fetchALL();
 
-var_dump($_SESSION['id']);
+var_dump($_SESSION);
 if (isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
-
+var_dump($id);
     
 
 require_once("../connexion/connexionDb.php");
 $request = $db->query("SELECT * FROM profil WHERE id = $id");
 $user = $request->fetch();
 var_dump($user);
-// var_dump($_SESSION['id']);
+var_dump($_SESSION['id']);
 // die();
  }
 
