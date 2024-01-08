@@ -46,10 +46,12 @@ $coms = $comliste->fetchAll();
         </div>
     </div>
     <div class="container d-flex justify-content-around rounded card-profil mt-1">
+        <a href="../page/addPost.php">
         <div class="m-1">
             <img src="<?= $_SESSION['picture'] ?>" alt="Image icone" height="140px" class="rounded-start-circle  rounded-end-circle">
             <h3 class="title-add-user"><?= $_SESSION['pseudo'] ?></h3>
         </div>
+    </a>
         <?php foreach ($profils as $profil) { ?>
 
             <div class="mt-4">

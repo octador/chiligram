@@ -2,9 +2,6 @@
 require_once('../connexion/connexionDb.php');
 
 
-session_start();
-
-
 if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
 
     $pseudoSession = $_POST['pseudo'];
@@ -33,6 +30,13 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     if ($checkPicture['picture'] == false) {
         //vider la session avant envoi dans la pas adduser
         
+=======
+    var_dump('en dessous');
+    var_dump($checkPicture['picture']);
+    
+
+    if ($checkPicture['picture'] == false) {
+>>>>>>> soumaia
         header("Location: ../page/addUser.php");
     }
 
@@ -46,4 +50,4 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
 
         header('Location: ../page/profil.php');
     }
-}
+}}
