@@ -22,7 +22,7 @@ include_once("../process/userProcess.php")
 
                 <div class="d-flex flex-column mt-2 mb-3">
                     <label for="imageInput">SELECT IMAGE</label>
-                    <input type="file" id="imageInput" name="image">
+                    <input type="file" id="imageInput" name="picture">
 
                     <input type="button" value="EFFACER" onclick="deleteImage()" class="text-card rounded mt-2">
                    <!-- ajouter une condition si les deux champ ne son pas remplies -->

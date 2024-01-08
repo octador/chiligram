@@ -7,18 +7,20 @@ session_start();
 
 if (
     isset($_POST['pseudo']) && !empty($_POST['pseudo']) &&
-    isset($_FILES['image']) && !empty($_FILES['image'])
+    isset($_FILES['picture']) && !empty($_FILES['picture'])
 ) {
     $pseudo = $_POST['pseudo'];
     // add url et formatage
-    $images = $_FILES['image'];
-    $name = basename($_FILES["image"]["name"]);
-    $tmp_name = ($_FILES["image"]["tmp_name"]);
+    $images = $_FILES['picture'];
+    $name = basename($_FILES["picture"]["name"]);
+    $tmp_name = ($_FILES["picture"]["tmp_name"]);
 
     $image = move_uploaded_file($tmp_name, "../img/" . $name);
     $pathimage = "../img/" . $name;
     $_SESSION['pseudo'] = $pseudo;
-    $_SESSION['image'] = $pathimage;
+    $_SESSION['picture'] = $pathimage;
+    
+    
 
     $sqlInsert = "INSERT INTO profil (pseudo, picture ) VALUE (:pseudo, :picture)";
     $createUser = $db->prepare($sqlInsert);
@@ -28,6 +30,9 @@ if (
             'picture' => $pathimage,
         ]
     );
+
+    $_SESSION['id'] = $db->lastInsertId();
+
     header('Location: ../page/profil.php');
 }
 

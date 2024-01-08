@@ -39,7 +39,10 @@ body{
 .card-profil{
     background-color:  #a8adf6;
 }
-
+.post{
+    width: 100%;
+   
+}
 
 
 /* ----------------------------RESPONSIVE--------------------------- */
