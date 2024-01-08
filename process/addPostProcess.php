@@ -4,16 +4,17 @@
 require_once('../connexion/connexionDb.php');
 
 session_start();
-
+var_dump($_POST['id']);
 if (
     isset($_POST['text']) && !empty($_POST['text']) &&
     isset($_FILES['image']) && !empty($_FILES['image'])&&
     isset($_POST['id'])&& !empty($_POST['id'])
 ) {
-    // var_dump($_POST['text']);
+    var_dump($_POST['text']);
     // var_dump($_FILES['image']);
    
    $id=$_POST['id'];
+
     $userid = $db->query('SELECT * FROM profil WHERE id='.$id);
     
     $user = $userid->fetch();

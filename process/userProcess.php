@@ -1,35 +1,58 @@
 <?php
 // --------------------------------------ADD USER----------------------
-
+// je vien de adduser.php
 require_once('../connexion/connexionDb.php');
 
 session_start();
+echo 'pseudo entré :';
+var_dump($_POST['pseudo']);
+echo 'picture entré :';
+var_dump($_FILES['picture']);
 
 if (
     isset($_POST['pseudo']) && !empty($_POST['pseudo']) &&
     isset($_FILES['picture']) && !empty($_FILES['picture'])
 ) {
-    $pseudoSession = $_POST['pseudo'];
+    echo 'pseudo apres isset :';
+    var_dump($_POST['pseudo']);
+    echo 'picture apres isset :';
+    var_dump($_FILES['picture']);
 
+    // recuperation du post dans une variable 
+    $pseudoSession = $_POST['pseudo'];
+    echo '$pseudoSession :';
+    var_dump($pseudoSession);
+
+    // check si user existe dans la $db
     $sql = "SELECT * FROM profil WHERE pseudo = '$pseudoSession' ";
     $request = $db->prepare($sql);
     $request->execute();
     $checkuser = $request->fetch();
 
-    if ($checkuser['pseudo'] == false) {
-        var_dump('je n\'existe pas');
+    var_dump($checkuser);
+
+    // echo 'sortie de checkuser';
+    // var_dump($checkuser);
+    // si checkuser existe pas
+    
+    if ($checkuser === false) {
+        // poste dans une variable
         $pseudo = $_POST['pseudo'];
-        // add url et formatage
-        $images = $_FILES['image'];
-        $name = basename($_FILES["image"]["name"]);
-        $tmp_name = ($_FILES["image"]["tmp_name"]);
+
+        // $_FILES dans picture
+        $images = $_FILES['picture'];
+        // formatage pour recupré l'adresse du $_FILES
+        $name = basename($_FILES["picture"]["name"]);
+        $tmp_name = ($_FILES["picture"]["tmp_name"]);
 
         $image = move_uploaded_file($tmp_name, "../img/" . $name);
         $pathimage = "../img/" . $name;
 
         $_SESSION['pseudo'] = $pseudo;
-        $_SESSION['image'] = $pathimage;
-
+        $_SESSION['picture'] = $pathimage;
+        echo 'adresse formaté :';
+        var_dump($pathimage);
+        // insertion dans la $db du pseudo et chemin de image
         $sqlInsert = "INSERT INTO profil (pseudo, picture ) VALUE (:pseudo, :picture)";
         $createUser = $db->prepare($sqlInsert);
         $createUser->execute(
@@ -38,38 +61,24 @@ if (
                 'picture' => $pathimage,
             ]
         );
-        
-    $pseudo = $_POST['pseudo'];
-    // add url et formatage
-    $images = $_FILES['picture'];
-    $name = basename($_FILES["picture"]["name"]);
-    $tmp_name = ($_FILES["picture"]["tmp_name"]);
+        // je met id dans une session du user que je vien de créé
+        $_SESSION['id'] = $db->lastInsertId();
 
-    $image = move_uploaded_file($tmp_name, "../img/" . $name);
-    $pathimage = "../img/" . $name;
-    $_SESSION['pseudo'] = $pseudo;
-    $_SESSION['picture'] = $pathimage;
-    
-    
-
-    $sqlInsert = "INSERT INTO profil (pseudo, picture ) VALUE (:pseudo, :picture)";
-    $createUser = $db->prepare($sqlInsert);
-    $createUser->execute(
-        [
-            'pseudo' => $pseudo,
-            'picture' => $pathimage,
-        ]
-    );
-
-    $_SESSION['id'] = $db->lastInsertId();
-
-    header('Location: ../page/profil.php');
-    }
-
-    if ($checkuser['pseudo'] == $pseudoSession) {
-        $_SESSION['pseudo'] = $checkuser['pseudo'];
-        $_SESSION['image'] = $checkuser['picture'];
-
+        // check $_SESSION['id']
+        // verifié que la session id ce crée
+        echo'check creation de session id';
+        var_dump($_SESSION['id']);
         header('Location: ../page/profil.php');
     }
-}
+// si $pseudo est trouver dans la $bd je l'ajoute au session
+echo 'ici';
+var_dump($checkuser);
+    if ($checkuser['pseudo'] === $pseudoSession) {
+        $_SESSION['pseudo'] = $checkuser['pseudo'];
+        $_SESSION['picture'] = $checkuser['picture'];
+        $_SESSION['id'] = $checkuser['id'];
+        var_dump($_SESSION['id']); 
+        header('Location: ../page/profil.php');
+    }
+}header("Location: ../index.php");
+
