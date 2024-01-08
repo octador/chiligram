@@ -1,5 +1,5 @@
 <?php
-// --------------------------------------ADD POST----------------------
+// --------------------------------------ADD COMMENT----------------------
 
 require_once('../connexion/connexionDb.php');
 
@@ -13,6 +13,7 @@ if (
     var_dump($_POST['text_com']);
     var_dump($_POST['postId']);
     var_dump($_POST['id']);
+    
 //    $id=$_POST['id'];
 //     $userid = $db->query('SELECT * FROM profil WHERE id='.$id);
     

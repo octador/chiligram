@@ -16,17 +16,12 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     $request->execute();
     $checkuser = $request->fetch();
 
-<<<<<<< HEAD
     //si le pseudo n'est pas dans la bd
     if ($checkuser['pseudo'] == false) {
         //vider la session avant envoi dans la pas adduser
         
         header("Location: ../page/addUser.php");
     }
-=======
-    // var_dump('le pseudo db :'. $checkuser['pseudo']);
-    // var_dump('le pseudo post :'. $pseudoSession);
->>>>>>> soumaia
 
     // pour select picture du pseudo
     $sql = "SELECT picture FROM profil WHERE pseudo = '$pseudoSession' ";
@@ -34,18 +29,10 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     $request->execute();
     $checkPicture = $request->fetch();
 
-<<<<<<< HEAD
     //si il y a pas d'ilage
     if ($checkPicture['picture'] == false) {
         //vider la session avant envoi dans la pas adduser
         
-=======
-    var_dump('en dessous');
-    var_dump($checkPicture['picture']);
-    
-
-    if ($checkPicture['picture'] == false) {
->>>>>>> soumaia
         header("Location: ../page/addUser.php");
     }
 
