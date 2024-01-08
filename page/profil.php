@@ -19,7 +19,7 @@ if (isset($_SESSION['id'])) {
 
     $request = $db->query("SELECT * FROM profil WHERE id = $id");
     $user = $request->fetch();
-    var_dump($user);
+    // var_dump($user);
 }
 // $postId=$db->query('SELECT * FROM post');
 
@@ -28,7 +28,7 @@ if (isset($_SESSION['id'])) {
 $postliste = $db->query('SELECT *, post.id FROM post JOIN profil ON profil.id = post.id_user_post ORDER BY post.date DESC');
 
 $posts = $postliste->fetchAll();
-var_dump($posts);
+// var_dump($posts);
 // var_dump($posts['id']);
 
 $comliste = $db->query('SELECT commentaire.id, commentaire.text_com, commentaire.id_user_com, commentaire.id_post, profil.pseudo, profil.picture, post.id_user_post, post.id, post.text, post.picture_post, post.date  FROM commentaire JOIN profil JOIN post ON commentaire.id_post = post.id  AND commentaire.id_user_com = profil.id WHERE commentaire.id_post = post.id');
@@ -117,7 +117,7 @@ $coms = $comliste->fetchAll();
 
             </div>
            
-            <?php var_dump($post['id']); ?>
+            
             <form action="../process/addcomment.php" method="post">
                 <input type="hidden" name="id" value="<?= $user['id'] ?>">
                 <input type="hidden" name="postId" value="<?= $post['id'] ?>">
