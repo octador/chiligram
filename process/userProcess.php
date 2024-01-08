@@ -9,7 +9,6 @@ if (
     isset($_POST['pseudo']) && !empty($_POST['pseudo']) &&
     isset($_FILES['picture']) && !empty($_FILES['picture'])
 ) {
-<<<<<<< HEAD
     $pseudoSession = $_POST['pseudo'];
 
     $sql = "SELECT * FROM profil WHERE pseudo = '$pseudoSession' ";
@@ -40,7 +39,6 @@ if (
             ]
         );
         
-=======
     $pseudo = $_POST['pseudo'];
     // add url et formatage
     $images = $_FILES['picture'];
@@ -65,7 +63,6 @@ if (
 
     $_SESSION['id'] = $db->lastInsertId();
 
->>>>>>> soumaia
     header('Location: ../page/profil.php');
     }
 
