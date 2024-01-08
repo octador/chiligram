@@ -7,8 +7,9 @@ session_start();
 
 if (
     isset($_POST['pseudo']) && !empty($_POST['pseudo']) &&
-    isset($_FILES['image']) && !empty($_FILES['image'])
+    isset($_FILES['picture']) && !empty($_FILES['picture'])
 ) {
+<<<<<<< HEAD
     $pseudoSession = $_POST['pseudo'];
 
     $sql = "SELECT * FROM profil WHERE pseudo = '$pseudoSession' ";
@@ -39,6 +40,32 @@ if (
             ]
         );
         
+=======
+    $pseudo = $_POST['pseudo'];
+    // add url et formatage
+    $images = $_FILES['picture'];
+    $name = basename($_FILES["picture"]["name"]);
+    $tmp_name = ($_FILES["picture"]["tmp_name"]);
+
+    $image = move_uploaded_file($tmp_name, "../img/" . $name);
+    $pathimage = "../img/" . $name;
+    $_SESSION['pseudo'] = $pseudo;
+    $_SESSION['picture'] = $pathimage;
+    
+    
+
+    $sqlInsert = "INSERT INTO profil (pseudo, picture ) VALUE (:pseudo, :picture)";
+    $createUser = $db->prepare($sqlInsert);
+    $createUser->execute(
+        [
+            'pseudo' => $pseudo,
+            'picture' => $pathimage,
+        ]
+    );
+
+    $_SESSION['id'] = $db->lastInsertId();
+
+>>>>>>> soumaia
     header('Location: ../page/profil.php');
     }
 
