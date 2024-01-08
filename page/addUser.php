@@ -20,8 +20,7 @@ include_once("../partials/footer.php");
                 </div>
 
                 <div class="d-flex flex-column mt-2 mb-3">
-                    <label for="imageInput">SELECT IMAGE</label>
-                    <input type="file" id="imageInput" name="picture"required>
+
 
                     <input type="button" value="EFFACER" onclick="deleteImage()" class="text-card rounded mt-2" >
                    

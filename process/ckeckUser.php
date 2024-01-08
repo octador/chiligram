@@ -25,14 +25,4 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])){
     $request = $db->prepare($sql);
     $request->execute();
     $checkPicture = $request->fetch();
-    $valuecheckPicture = $checkPicture['picture'];
 
-    // si les pseudo est bon sauvegarde dans une session
-
-    $_SESSION['pseudo'] = $pseudoSession;
-    $_SESSION['picture'] = $valuecheckPicture;
-    var_dump($_SESSION['pseudo']);
-
-   
-    header('Location: ../page/profil.php');
-}
