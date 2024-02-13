@@ -13,14 +13,12 @@ if (
     // var_dump($_POST['text']);
     // var_dump($_FILES['image']);
    
-   $id=$_POST['id'];
+    $id=$_POST['id'];
     $userid = $db->query('SELECT * FROM profil WHERE id='.$id);
     
     $user = $userid->fetch();
     // var_dump($user['id']);
-    
-    // add url et formatage
-    
+   
     $name = basename($_FILES["image"]["name"]);
     $tmp_name = ($_FILES["image"]["tmp_name"]);
 
@@ -29,6 +27,7 @@ if (
     $_SESSION['text'] = $_POST['text'];
     $_SESSION['image'] = $pathimage;
     // $_SESSION['id']=$id;
+    
     $today = date('Y-m-d H:i:s'); 
     $postIns = "INSERT INTO post (text, picture_post, date, id_user_post ) VALUE (:text, :picture_post, :date, :id_user_post)";
     $createPost = $db->prepare($postIns);
@@ -40,6 +39,7 @@ if (
             'id_user_post'=> $_POST['id'],
 
         ]
-    );  
+    ); 
+    $_SESSION['postid']= $db->lastInsertId();
     header('Location: ../page/profil.php');
 }

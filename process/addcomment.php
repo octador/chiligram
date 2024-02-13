@@ -32,6 +32,6 @@ if (
 
         ]
     ); 
-     
+    
     header('Location: ../page/profil.php');
 }

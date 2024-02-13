@@ -1,57 +1,30 @@
 <?php
+// --------------------------------------CHECK USER----------------------
+
 require_once('../connexion/connexionDb.php');
 
-
+session_start();
+$_SESSION['pseudo'] = $_POST['pseudo'];
+// var_dump($_SESSION['pseudo'] );
 if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
+$findUser = $db->prepare('SELECT * FROM  profil WHERE pseudo = :pseudo');
+$findUser->execute([
+   ':pseudo' => $_SESSION['pseudo']
+]);
+$existingUser = $findUser->fetch();
 
-    $pseudoSession = $_POST['pseudo'];
-    var_dump($pseudoSession);
+var_dump($existingUser);
+if($existingUser) {
+   
+    // var_dump($existingUser['pseudo']);
+    $_SESSION['id']=$existingUser['id'];
 
-    // verifier si il exist dans la $bd
-    $sql = "SELECT * FROM profil WHERE pseudo = '$pseudoSession' ";
-    $request = $db->prepare($sql);
-    $request->execute();
-    $checkuser = $request->fetch();
-    var_dump($checkuser['pseudo']);
-
-    //si le pseudo n'est pas dans la bd
-    if ($checkuser['pseudo'] == false) {
-        //vider la session avant envoi dans la pas adduser
-        
-        header("Location: ../page/addUser.php");
-    }
-    // var_dump('le pseudo db :'. $checkuser['pseudo']);
-    // var_dump('le pseudo post :'. $pseudoSession);
-
-    // pour select picture du pseudo
-    $sql = "SELECT picture FROM profil WHERE pseudo = '$pseudoSession' ";
-    $request = $db->prepare($sql);
-    $request->execute();
-    $checkPicture = $request->fetch();
-
-    //si il y a pas d'image
-    // if ($checkPicture['picture'] == false) {
-    // var_dump('en dessous');
-    // var_dump($checkPicture['picture']);
-    
-
-    if ($checkPicture['picture'] == false) {
-
-     
-        header("Location: ../page/addUser.php");
-    }
-    var_dump('en dessous');
-    var_dump($checkPicture['picture']);
+    header("Location: ../page/profil.php");
+} else {
     header("Location: ../page/addUser.php");
-
-    
-
-    }
-    $valuecheckPicture = $checkPicture['picture'];
-   if ($checkuser['pseudo'] == $pseudoSession) {
-
-        $_SESSION['pseudo'] = $pseudoSession;
-        $_SESSION['picture'] = $valuecheckPicture;
-        header('Location: ../page/profil.php');
+   
 }
+
+}
+
 
